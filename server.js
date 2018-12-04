@@ -23,6 +23,14 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+// Motivational route. Give yourself some <3
+app.route('/api/whatami')
+  .get(function(req, res){
+    res.status(200)
+      .type('text')
+      .send('...you are a great person!');
+  });
+
 // 404 error handling
 app.use(function(req, res, next) {
   res.status(404)
