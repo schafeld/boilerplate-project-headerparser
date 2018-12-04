@@ -18,12 +18,31 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+// Motivational route. Give yourself some <3
+app.route('/api/whatami')
+  .get(function(req, res){
+    res.status(200)
+      .type('text')
+      .send('...you are a great person!');
+  });
+
+// Log some user info
+app.route('/api/whoami')
+  .get(function(req, res){
+    res.json({ipaddress: req.ip, language: req.headers['accept-language'], software: req.headers['user-agent']});
+  });
+
+// 404 error handling
+app.use(function(req, res, next) {
+  res.status(404)
+    .type('text')
+    .send('URL Not Found (404)');
+});
 
 
 // listen for requests :)
