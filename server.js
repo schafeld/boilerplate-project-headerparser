@@ -18,12 +18,17 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+// 404 error handling
+app.use(function(req, res, next) {
+  res.status(404)
+    .type('text')
+    .send('URL Not Found (404)');
+});
 
 
 // listen for requests :)
