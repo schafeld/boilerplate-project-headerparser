@@ -31,6 +31,12 @@ app.route('/api/whatami')
       .send('...you are a great person!');
   });
 
+// Log some user info
+app.route('/api/whoami')
+  .get(function(req, res){
+    res.json({ipaddress: req.ip, language: req.headers['accept-language'], software: req.headers['user-agent']});
+  });
+
 // 404 error handling
 app.use(function(req, res, next) {
   res.status(404)
